@@ -36,7 +36,7 @@ panel on the left:
 
 Delete existing table
 -- SQLBook: Code
--- Active: 1698674191041@@127.0.0.1@5432@postgres
+-- Active: 1698698471906@@127.0.0.1@5432@postgres@public
 -- If the table already exists we can drop it:
 -- If it doesn't exist nothing happens
 -- System commands are in upper case and user defined
@@ -102,6 +102,7 @@ Try it yourself!
 
 INSERT INTO drivers VALUES (5, 'Max Verstappen', 'Dutch', 51);
 INSERT INTO drivers VALUES (6, 'Juan Pablo Montoya', 'Colombian', 6);
+INSERT INTO drivers VALUES (7, 'McDonald', 'America', 7);
 
 -- SQLBook: Markup
 # <span style="color:darkblue"> II. Dataset Operations </span>
@@ -189,6 +190,8 @@ with more than 60 victories
 -- SQLBook: Code
 -- Write your own code!
 SELECT driver_name, nationality, driver_id, victories FROM drivers;
+SELECT nationality, driver_id FROM drivers 
+WHERE victories > 60;
 
 -- SQLBook: Markup
 # <span style="color:darkblue"> III. Groupby + Chaining </span>
@@ -200,12 +203,13 @@ Groupby + Aggregate
 -- This command computes summary statistics by nationalitySELECT COUNT(*) AS num_rows,
 -- Including "nationality" (the grouping column) is optional in the select
 SELECT nationality,
-       SUM(victories) AS sum_victories,
+        SUM(victories) AS sum_victories,
        AVG(victories) AS mean_victories,
        MIN(victories) AS min_victories,
        MAX(victories) AS max_victories
 FROM drivers
-GROUP BY nationality;
+GROUP BY nationality
+HAVING SUM(victories) > 50;
 -- SQLBook: Markup
 <font size = "5">
 
