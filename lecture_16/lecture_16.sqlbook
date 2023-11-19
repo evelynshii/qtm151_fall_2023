@@ -236,7 +236,6 @@ Subsetting **before** and **after** aggregating
 -- HAVING is the command you use to subset *after* aggregating
 -- This differs from WHERE, which is used to subset *before* aggregating
 -- SQL differentiates the two types of subsetting
-
 SELECT nationality,
        SUM(victories) AS sum_victories,
        AVG(victories) AS mean_victories,
